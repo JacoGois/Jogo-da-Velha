@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+</head>
+<body>
+    <h1>
+        Jogo Da Velha
+    </h1>
+    <div class="board">
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <button>
+        Reinicie
+    </button>
+
+    <style>
+        /* Corpo do site */
+        body {
+            align-items: center;
+            justify-items: center;
+            justify-content: center;
+            align-content: center;
+            display: grid;
+            background: linear-gradient(
+                90deg,
+                rgba(25, 231, 25, 0.64),
+                rgba(40, 40, 228, 0.677)
+            );
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: black;
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* Corpo do Jogo */
+        .board {
+            display: flex;
+            flex-wrap: wrap;
+            height: 604px;
+            width: 604px;
+            margin-top: 10px;
+        }
+
+        .cell {
+            border: 1px solid black;
+            height: 200px;
+            width: 200px;
+        }
+
+        .cell:nth-child(1),.cell:nth-child(2),.cell:nth-child(3) {
+            border-top: none;
+        }
+
+        .cell:nth-child(1),.cell:nth-child(4),.cell:nth-child(7) {
+            border-left: none;
+        }
+
+        .cell:nth-child(3),.cell:nth-child(6),.cell:nth-child(9) {
+            border-right: none;
+        }
+
+        .cell:nth-child(7),.cell:nth-child(8),.cell:nth-child(9) {
+            border-bottom: none;
+        }
+    </style>
+
+    <script>
+        let cells = document.getElementsByClassName('board')
+        
+    </script>
+</body>
+</html>
