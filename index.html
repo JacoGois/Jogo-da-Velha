@@ -21,9 +21,6 @@
         <div class="cell"></div>
         <div class="cell"></div>
     </div>
-    <button>
-        Reinicie
-    </button>
 
     <style>
         /* Corpo do site */
@@ -40,13 +37,6 @@
             );
         }
 
-        button {
-            margin-top: 20px;
-            background-color: black;
-            color: white;
-            border-radius: 5px;
-        }
-
         /* Corpo do Jogo */
         .board {
             display: flex;
@@ -60,6 +50,12 @@
             border: 1px solid black;
             height: 200px;
             width: 200px;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            justify-items: center;
+            align-items: center;
+            font-size: 10rem;
         }
 
         .cell:nth-child(1),.cell:nth-child(2),.cell:nth-child(3) {
@@ -80,7 +76,25 @@
     </style>
 
     <script>
-        let cells = document.getElementsByClassName('board')
+        let cells = document.getElementsByClassName('cell')
+        let currentPlayer = 'X'
+
+        function changePlayer () {
+            if (currentPlayer === 'X') {
+            currentPlayer = 'O'
+            } else {
+                currentPlayer = 'X'
+            }
+        }
+        for (let i = 0; i < cells.length; i++) {
+            let cell = cells[i]
+            cell.addEventListener('click', function () {
+                if (cell.innerHTML === '') {
+                    cell.innerHTML = currentPlayer     
+                    changePlayer ()               
+                }
+            }) 
+        }
         
     </script>
 </body>
