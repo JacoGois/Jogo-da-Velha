@@ -10,7 +10,11 @@
     <h1>
         Jogo Da Velha
     </h1>
-    <div class="board">
+    <div class="hidden">
+        <p></p>
+        <button>Clique aqui para reiniciar</button>
+    </div>
+    <div id="board" class="board">
         <div class="cell"></div>
         <div class="cell"></div>
         <div class="cell"></div>
@@ -21,12 +25,12 @@
         <div class="cell"></div>
         <div class="cell"></div>
     </div>
-    <div class="player">
+    <div id="player" class="player">
         <div class="player1">
-            Jogador 1: 
+            Jogador X: 
         </div>
         <div class="player2">
-            Jogador 2: 
+            Jogador O: 
         </div>
     </div>
     <style>
@@ -47,6 +51,22 @@
         h1{
             font-size: 60px;
             font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .game-done h1,
+        .game-done .board, 
+        .game-done .player {
+            opacity: .2;            
+        }
+
+        .hidden {
+            border: 3px solid black;
+            width: 1000px;
+            height: 200px;
+            display: none;
+            position: absolute;
+            justify-content: center;
+            align-items: center;
         }
 
         .player {
@@ -122,46 +142,54 @@
         function victoryCondition () {
             if (currentPlayer === 'X') {
                 if (cells[0].innerHTML === 'X' && cells[1].innerHTML=== 'X' && cells[2].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[3].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[5].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[6].innerHTML === 'X' && cells[7].innerHTML=== 'X' && cells[8].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[0].innerHTML === 'X' && cells[3].innerHTML=== 'X' && cells[6].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[1].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[7].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[2].innerHTML === 'X' && cells[5].innerHTML=== 'X' && cells[8].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[0].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[8].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 } else if (cells[2].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[6].innerHTML === 'X') {
-                    victory ()
+                    victoryX ()
                 }
             }
             if (currentPlayer === 'O') {
                 if (cells[0].innerHTML === 'O' && cells[1].innerHTML=== 'O' && cells[2].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[3].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[5].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[6].innerHTML === 'O' && cells[7].innerHTML=== 'O' && cells[8].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[0].innerHTML === 'O' && cells[3].innerHTML=== 'O' && cells[6].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[1].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[7].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[2].innerHTML === 'O' && cells[5].innerHTML=== 'O' && cells[8].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[0].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[8].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 } else if (cells[2].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[6].innerHTML === 'O') {
-                    victory ()
+                    victoryO ()
                 }
             }
         }
 
-        function victory () {
-            console.log('oi')
+        function victoryX () {
+            document.querySelector('body').classList.add('game-done');
+            document.getElementsByTagName('p')[0].innerHTML = 'Jogador X ganhou!'
+            document.getElementsByClassName('hidden')[0].style.display = 'flex'
+        }
+
+        function victoryO () {
+            document.querySelector('body').classList.add('game-done');
+            document.getElementsByClassName('hidden')[0].innerHTML = 'Jogador X ganhou!'
+            document.getElementsByClassName('hidden')[0].style.display = 'flex'
         }
 
         // Jogo
