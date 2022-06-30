@@ -12,8 +12,8 @@
     </h1>
     <div class="hidden">
         <p></p>
-        <button>Clique aqui para reiniciar</button>
     </div>
+    <button class="hiddenB">Clique aqui para reiniciar</button>
     <div id="board" class="board">
         <div class="cell"></div>
         <div class="cell"></div>
@@ -27,10 +27,10 @@
     </div>
     <div id="player" class="player">
         <div class="player1">
-            Jogador X: 
+            🛠 -
         </div>
         <div class="player2">
-            Jogador O: 
+            ⚙ -
         </div>
     </div>
     <style>
@@ -60,13 +60,18 @@
         }
 
         .hidden {
-            border: 3px solid black;
             width: 1000px;
             height: 200px;
             display: none;
             position: absolute;
             justify-content: center;
             align-items: center;
+            font-size: 80px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        }
+
+        .hiddenB {
+            display: none;
         }
 
         .player {
@@ -128,80 +133,110 @@
     <script>
         // Variáveis
         let cells = document.getElementsByClassName('cell')
-        let currentPlayer = 'X'
+        let currentPlayer = '🛠'
+        let gameActive = true
 
         // Funções
         function changePlayer () {
-            if (currentPlayer === 'X') {
-                currentPlayer = 'O'
+            if (currentPlayer === '🛠') {
+                currentPlayer = '⚙'
             } else {
-                currentPlayer = 'X'
+                currentPlayer = '🛠'
             }
         }
 
         function victoryCondition () {
-            if (currentPlayer === 'X') {
-                if (cells[0].innerHTML === 'X' && cells[1].innerHTML=== 'X' && cells[2].innerHTML === 'X') {
+            if (currentPlayer === '🛠') {
+                if (cells[0].innerHTML === '🛠' && cells[1].innerHTML=== '🛠' && cells[2].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[3].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[5].innerHTML === 'X') {
+                } else if (cells[3].innerHTML === '🛠' && cells[4].innerHTML=== '🛠' && cells[5].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[6].innerHTML === 'X' && cells[7].innerHTML=== 'X' && cells[8].innerHTML === 'X') {
+                } else if (cells[6].innerHTML === '🛠' && cells[7].innerHTML=== '🛠' && cells[8].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[0].innerHTML === 'X' && cells[3].innerHTML=== 'X' && cells[6].innerHTML === 'X') {
+                } else if (cells[0].innerHTML === '🛠' && cells[3].innerHTML=== '🛠' && cells[6].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[1].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[7].innerHTML === 'X') {
+                } else if (cells[1].innerHTML === '🛠' && cells[4].innerHTML=== '🛠' && cells[7].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[2].innerHTML === 'X' && cells[5].innerHTML=== 'X' && cells[8].innerHTML === 'X') {
+                } else if (cells[2].innerHTML === '🛠' && cells[5].innerHTML=== '🛠' && cells[8].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[0].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[8].innerHTML === 'X') {
+                } else if (cells[0].innerHTML === '🛠' && cells[4].innerHTML=== '🛠' && cells[8].innerHTML === '🛠') {
                     victoryX ()
-                } else if (cells[2].innerHTML === 'X' && cells[4].innerHTML=== 'X' && cells[6].innerHTML === 'X') {
+                } else if (cells[2].innerHTML === '🛠' && cells[4].innerHTML=== '🛠' && cells[6].innerHTML === '🛠') {
                     victoryX ()
                 }
             }
-            if (currentPlayer === 'O') {
-                if (cells[0].innerHTML === 'O' && cells[1].innerHTML=== 'O' && cells[2].innerHTML === 'O') {
+            if (currentPlayer === '⚙') {
+                if (cells[0].innerHTML === '⚙' && cells[1].innerHTML=== '⚙' && cells[2].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[3].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[5].innerHTML === 'O') {
+                } else if (cells[3].innerHTML === '⚙' && cells[4].innerHTML=== '⚙' && cells[5].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[6].innerHTML === 'O' && cells[7].innerHTML=== 'O' && cells[8].innerHTML === 'O') {
+                } else if (cells[6].innerHTML === '⚙' && cells[7].innerHTML=== '⚙' && cells[8].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[0].innerHTML === 'O' && cells[3].innerHTML=== 'O' && cells[6].innerHTML === 'O') {
+                } else if (cells[0].innerHTML === '⚙' && cells[3].innerHTML=== '⚙' && cells[6].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[1].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[7].innerHTML === 'O') {
+                } else if (cells[1].innerHTML === '⚙' && cells[4].innerHTML=== '⚙' && cells[7].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[2].innerHTML === 'O' && cells[5].innerHTML=== 'O' && cells[8].innerHTML === 'O') {
+                } else if (cells[2].innerHTML === '⚙' && cells[5].innerHTML=== '⚙' && cells[8].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[0].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[8].innerHTML === 'O') {
+                } else if (cells[0].innerHTML === '⚙' && cells[4].innerHTML=== '⚙' && cells[8].innerHTML === '⚙') {
                     victoryO ()
-                } else if (cells[2].innerHTML === 'O' && cells[4].innerHTML=== 'O' && cells[6].innerHTML === 'O') {
+                } else if (cells[2].innerHTML === '⚙' && cells[4].innerHTML=== '⚙' && cells[6].innerHTML === '⚙') {
                     victoryO ()
                 }
             }
+        }
+
+        function clean () {
+            for (let i = 0; i < cells.length; i++) {
+                if (cells[i].innerHTML !== '' ) {
+                    cells[i].innerHTML = ''
+                }
+            }
+        }
+
+        function stop () {
+            gameActive = false
         }
 
         function victoryX () {
             document.querySelector('body').classList.add('game-done');
-            document.getElementsByTagName('p')[0].innerHTML = 'Jogador X ganhou!'
+            document.getElementsByTagName('p')[0].innerHTML = '🛠 ganhou!'
             document.getElementsByClassName('hidden')[0].style.display = 'flex'
+            document.getElementsByClassName('hiddenB')[0].style.display = 'flex'
+            clean ()
+            stop ()
         }
 
         function victoryO () {
             document.querySelector('body').classList.add('game-done');
-            document.getElementsByClassName('hidden')[0].innerHTML = 'Jogador X ganhou!'
+            document.getElementsByClassName('hidden')[0].innerHTML = '⚙ ganhou!'
             document.getElementsByClassName('hidden')[0].style.display = 'flex'
+            document.getElementsByClassName('hiddenB')[0].style.display = 'flex'
+            clean ()
+            stop ()
+        }
+
+        function clickButton() {
+            let X = document.getElementsByClassName('player1')[0]
+            let O = document.getElementsByClassName('player2')[0]
+            if (currentPlayer === '🛠') {
+                x += 1
+                
+            } 
         }
 
         // Jogo
-        for (let i = 0; i < cells.length; i++) {
-            let cell = cells[i]
-            cell.addEventListener('click', function () {
-                if (cell.innerHTML === '') {
-                    cell.innerHTML = currentPlayer
-                    victoryCondition ()     
-                    changePlayer ()               
-                }
-            }) 
+        if (gameActive = true) {
+            for (let i = 0; i < cells.length; i++) {
+                let cell = cells[i]
+                cell.addEventListener('click', function () {
+                    if (cell.innerHTML === '' && gameActive === true) {
+                        cell.innerHTML = currentPlayer
+                        victoryCondition ()     
+                        changePlayer ()               
+                    }
+                }) 
+            }
         }
         
         
