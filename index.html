@@ -216,7 +216,7 @@
             stop ()
         }
 
-        function clickButton() {
+        function clickButton () {
             let X = document.getElementsByClassName('player1')[0]
             let O = document.getElementsByClassName('player2')[0]
             if (currentPlayer === '🛠') {
@@ -226,7 +226,7 @@
         }
 
         // Jogo
-        if (gameActive = true) {
+        if (gameActive === true) {
             for (let i = 0; i < cells.length; i++) {
                 let cell = cells[i]
                 cell.addEventListener('click', function () {
@@ -237,6 +237,10 @@
                     }
                 }) 
             }
+        }
+
+        if (gameActive === false) {
+            let but = document.getElementsByClassName('hiddenB')[0]
         }
         
         
