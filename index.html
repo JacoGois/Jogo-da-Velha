@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>
-        Jogo Da Velha
+        Jogo Da Velha 
     </h1>
     <div class="hidden">
         <p></p>
@@ -27,10 +27,10 @@
     </div>
     <div id="player" class="player">
         <div class="player1">
-            🛠 -
+            🛠 - <div class="pointHammer"></div>
         </div>
         <div class="player2">
-            ⚙ -
+            ⚙ - <div class="pointGear"></div>
         </div>
     </div>
     <style>
@@ -72,6 +72,16 @@
 
         .hiddenB {
             display: none;
+            background: linear-gradient(
+                90deg,
+                rgba(40, 40, 228, 0.677),
+                rgba(25, 231, 25, 0.64)
+               );
+            border-radius: 9px;
+            border-width: 2px;
+            border-color: gray;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-weight: bold;
         }
 
         .player {
@@ -89,6 +99,14 @@
         .player2 {
             font-size: 30px;
             margin-left: 40px;
+        }
+
+        .pointHammer {
+            display: inline-block;
+        }
+
+        .pointGear {
+            display: inline-block;
         }
 
         /* Corpo do Jogo */
@@ -135,6 +153,8 @@
         let cells = document.getElementsByClassName('cell')
         let currentPlayer = '🛠'
         let gameActive = true
+        let valueHammer = 0
+        let valueGear = 0
 
         // Funções
         function changePlayer () {
@@ -199,7 +219,7 @@
         }
 
         function victoryX () {
-            document.querySelector('body').classList.add('game-done');
+            document.querySelector('body').classList.add('game-done')
             document.getElementsByTagName('p')[0].innerHTML = '🛠 ganhou!'
             document.getElementsByClassName('hidden')[0].style.display = 'flex'
             document.getElementsByClassName('hiddenB')[0].style.display = 'flex'
@@ -208,21 +228,46 @@
         }
 
         function victoryO () {
-            document.querySelector('body').classList.add('game-done');
-            document.getElementsByClassName('hidden')[0].innerHTML = '⚙ ganhou!'
+            document.querySelector('body').classList.add('game-done')
+            document.getElementsByTagName('p')[0].innerHTML = '⚙ ganhou!'
+            document.getElementsByClassName('hidden')[0].style.display = 'flex'
+            document.getElementsByClassName('hiddenB')[0].style.display = 'flex'
+            clean ()  
+            stop ()
+        }
+
+        function noVictory () {
+            document.querySelector('body').classList.add('game-done')
+            document.getElementsByClassName('hidden')[0].innerHTML = 'Ninguém ganhou! 😢'
             document.getElementsByClassName('hidden')[0].style.display = 'flex'
             document.getElementsByClassName('hiddenB')[0].style.display = 'flex'
             clean ()
             stop ()
         }
 
-        function clickButton () {
-            let X = document.getElementsByClassName('player1')[0]
-            let O = document.getElementsByClassName('player2')[0]
-            if (currentPlayer === '🛠') {
-                x += 1
-                
-            } 
+        function old () {
+            if (cells[0].innerHTML && cells[1].innerHTML && cells[2].innerHTML && cells[3].innerHTML && cells[4].innerHTML && cells[5].innerHTML && cells[6].innerHTML && cells[7].innerHTML && cells[8].innerHTML !== '') {
+                noVictory ()
+                clean ()
+                stop ()
+            }
+        }
+
+        function reset () {
+            gameActive = true
+            currentPlayer = '🛠'
+        }
+
+        function score () {
+            if(currentPlayer === '🛠') {
+                valueGear += 1
+                pg = document.getElementsByClassName('pointGear')[0]
+                pg.innerHTML = valueGear
+            } else if (currentPlayer === '⚙'){
+                valueHammer += 1
+                ph = document.getElementsByClassName('pointHammer')[0]
+                ph.innerHTML = valueHammer
+            }
         }
 
         // Jogo
@@ -233,14 +278,22 @@
                     if (cell.innerHTML === '' && gameActive === true) {
                         cell.innerHTML = currentPlayer
                         victoryCondition ()     
+                        old ()
                         changePlayer ()               
                     }
                 }) 
             }
         }
 
-        if (gameActive === false) {
-            let but = document.getElementsByClassName('hiddenB')[0]
+        if (document.getElementsByClassName('hiddenB')[0].style.display = 'none') {
+            let bnt = document.getElementsByClassName('hiddenB')[0]
+            bnt.addEventListener('click', function () {
+                document.getElementsByClassName('hidden')[0].style.display = 'none'
+                document.getElementsByClassName('hiddenB')[0].style.display = 'none'
+                document.querySelector('body').classList.remove('game-done')
+                score ()
+                reset ()
+            })
         }
         
         
